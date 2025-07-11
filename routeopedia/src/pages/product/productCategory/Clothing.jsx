@@ -1,8 +1,11 @@
+import ProductList from "../ProductList";
 function Clothing() {
   return (
-    <div>
-      <h1>Clothing</h1>
-    </div>
+    <ProductList
+      filterType="clothing"
+      title="Clothing"
+      description="Trendy fashion items:"
+    />
   );
 }
 
