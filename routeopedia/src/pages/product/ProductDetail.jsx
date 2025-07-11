@@ -1,7 +1,8 @@
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { allProducts } from "../../data/products";
 function ProductDetail() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const product = allProducts.find((p) => p.id == parseInt(id));
 
   if (!product) {
@@ -18,9 +19,12 @@ function ProductDetail() {
 
   return (
     <div className="m-3 p-3 border">
-      <Link to="/products" className="btn btn-outline-success my-2">
+      <button
+        onClick={() => navigate(-1)}
+        className="btn btn-outline-success my-2"
+      >
         ← Back to Products
-      </Link>
+      </button>
       <h1>{product.name}</h1>
       <p>Price: ${product.price}</p>
       <p>Category: {product.category}</p>
