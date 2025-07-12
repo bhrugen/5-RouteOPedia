@@ -13,6 +13,7 @@ import Login from "../pages/auth/Login";
 import AdminPortal from "../pages/admin/AdminPortal";
 import CustomerPortal from "../pages/customer/CustomerPortal";
 import ProtectedRoute from "./ProtectedRoute";
+import RoleBasedRoute from "./RoleBasedRoute";
 function AppRouter() {
   return (
     <Routes>
@@ -34,8 +35,22 @@ function AppRouter() {
         }
       />
       <Route path="/login" element={<Login />} />
-      <Route path="/admin" element={<AdminPortal />} />
-      <Route path="/customer" element={<CustomerPortal />} />
+      <Route
+        path="/admin"
+        element={
+          <RoleBasedRoute allowedRoles={["admin"]}>
+            <AdminPortal />
+          </RoleBasedRoute>
+        }
+      />
+      <Route
+        path="/customer"
+        element={
+          <RoleBasedRoute allowedRoles={["customer"]}>
+            <CustomerPortal />
+          </RoleBasedRoute>
+        }
+      />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
